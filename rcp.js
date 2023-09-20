@@ -43,6 +43,7 @@ document.querySelector('.js-rock-button').addEventListener('click',() => {
 
 let isAutoPlaying = false;
 let intervalId;
+
 function autoPlay(){
     if(!isAutoPlaying){
         intervalId= setInterval(function(){
