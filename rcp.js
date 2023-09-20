@@ -14,6 +14,49 @@ let score = JSON.parse(localStorage.getItem('score'))||{
 
 updateScore();
 
+document.body.addEventListener('keydown',(event)=>{
+    if(event.key === 'r'){
+        playerMove('Rock');
+    }else if(event.key === 'p'){
+        playerMove('Paper');
+    }else if(event.key ==='s'){
+        playerMove('Scissors');
+    }
+  });
+
+document.querySelector('.js-rock-button').addEventListener('click',() => {
+    playerMove('Rock');
+  });
+  document.querySelector('.js-paper-button').addEventListener('click',() => {
+    playerMove('Paper');
+  });
+  document.querySelector('.js-scissors-button').addEventListener('click',() => {
+    playerMove('Scissors');
+  });
+  document.querySelector('.js-reset-button').addEventListener('click',() => {
+    score.Wins=0;
+    score.Loses=0;
+    score.Ties=0;
+    localStorage.removeItem('score');
+    updateScore();
+  })
+
+let isAutoPlaying = false;
+let intervalId;
+function autoPlay(){
+    if(!isAutoPlaying){
+        intervalId= setInterval(function(){
+            const pMove= pickCompMove();
+            playerMove(pMove);
+        },2000);
+        isAutoPlaying=true;
+    }else{
+        clearInterval(intervalId);
+        isAutoPlaying=false;
+    }
+   
+}
+
 function playerMove(pMove){
 
     const comp= pickCompMove();
