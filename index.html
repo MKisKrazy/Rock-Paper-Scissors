@@ -11,11 +11,11 @@
     <p class="title">Rock Paper Scissors</p>
     <div class="main-buttons">
 
-        <button class="move-button" ><img class="move-icon"src="Rock-emoji.png" alt="Rock-img"></button>
+        <button class="move-button js-rock-button"><img class="move-icon"src="Rock-emoji.png" alt="Rock-img"></button>
 
-        <button class="move-button" ><img class="move-icon" src="Paper-emoji.png" alt="paper-img"></button>
+        <button class="move-button js-paper-button" ><img class="move-icon" src="Paper-emoji.png" alt="paper-img"></button>
     
-        <button class="move-button" ><img class="move-icon" src="Scissors-emoji.png" alt="scissors-img"></button>
+        <button class="move-button js-scissors-button"><img class="move-icon" src="Scissors-emoji.png" alt="scissors-img"></button>
     
     </div>
    
@@ -25,9 +25,9 @@
     <p class="js-score final-score"></p>
 
     <div class="reset-button-container">
-        <button  class="reset-button">Reset Score</button>
+        <button class="reset-button js-reset-button">Reset Score</button>
+    <button class="autoplay-button" onclick="autoPlay();">AutoPlay</button>
     </div>
-        <button class="autoplay-button" onclick="autoPlay();">AutoPlay</button>
 <script src="rcp.js"></script>
 </body>
 </html>
