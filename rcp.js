@@ -21,6 +21,10 @@ document.body.addEventListener('keydown',(event)=>{
         playerMove('Paper');
     }else if(event.key ==='s'){
         playerMove('Scissors');
+    }else if(event.key==='a'){
+        autoPlay();
+    }else if(event.key==='Backspace'){
+        showRestConfirmation();
     }
   });
 
@@ -33,13 +37,44 @@ document.querySelector('.js-rock-button').addEventListener('click',() => {
   document.querySelector('.js-scissors-button').addEventListener('click',() => {
     playerMove('Scissors');
   });
+
+  document.querySelector('.js-autoplay-button').addEventListener('click',()=>{ autoPlay();});
+
   document.querySelector('.js-reset-button').addEventListener('click',() => {
+
+    showRestConfirmation();
+  });
+  
+function resetScore(){
     score.Wins=0;
     score.Loses=0;
     score.Ties=0;
     localStorage.removeItem('score');
     updateScore();
-  })
+};
+
+function hideConfi(){
+    document.querySelector('.js-confirmation-msg').innerHTML='';
+}
+
+function showRestConfirmation(){
+    document.querySelector('.js-confirmation-msg').innerHTML=`
+    <p>Are you sure u want to reset?</p>
+    <button class="js-yes-button yes-button" ">Yes</button>
+    <button class="js-no-button no-button">No</button>`;
+
+    document.querySelector('.js-yes-button').addEventListener('click',()=>{
+        resetScore();
+        hideConfi();
+      });
+      document.querySelector('.js-no-button').addEventListener('click',()=>{
+        
+        hideConfi();
+      });
+    
+}
+  
+ 
 
 let isAutoPlaying = false;
 let intervalId;
@@ -49,13 +84,20 @@ function autoPlay(){
         intervalId= setInterval(function(){
             const pMove= pickCompMove();
             playerMove(pMove);
-        },2000);
+        },1000);
         isAutoPlaying=true;
     }else{
         clearInterval(intervalId);
         isAutoPlaying=false;
     }
-   
+
+    let a =document.querySelector('.js-autoplay-button');
+    if(a.innerHTML==='AutoPlay'){
+        a.innerHTML='Stop Playing';
+    }else{
+        a.innerHTML='AutoPlay';
+    }
+    updateScore();
 }
 
 function playerMove(pMove){
